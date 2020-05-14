@@ -21,6 +21,12 @@ func GetTokens(command string) ([]string, error) {
 	return shellwords.Parse(command)
 }
 
+// CommandExists check to see if the specified command exists
+func CommandExists(command string) bool {
+	_, err := exec.LookPath(command)
+	return err == nil
+}
+
 // ExecuteShellCommand runs a command via the shell
 func ExecuteShellCommand(command string) error {
 	tokens, err := GetTokens(command)
